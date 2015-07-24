@@ -70,8 +70,12 @@
 					}
 					$select.replaceWith($selectClone);
 					console.log("Searched " + json['search']);
-					$(movieinformation.textSelector).parent().next()
-					                                         .text(ss.i18n._t('MovieInformationField.TEXT_DESCRIPTION'));
+					// Delay changing back text until roughly when the dropdown
+					// appears again (thanks to the chosen library)
+					setTimeout(function() {
+						$(movieinformation.textSelector).parent().next()
+						                                         .text(ss.i18n._t('MovieInformationField.TEXT_DESCRIPTION'));
+					}, 400);
 				},
 		};
 		$(movieinformation.textSelector).entwine({
