@@ -10,40 +10,40 @@
 				{
 					this.currentSearch = '';
 					// Detect changes
-					$(movieinformation.textSelector).on('input', movieinformation.input)
+					$(this.textSelector).on('input', movieinformation.input)
 					// Do initial search
-					movieinformation.input();
+					this.input();
 				},
 			input : function()
 				{
-					var search = $(movieinformation.textSelector).val();
-					$(movieinformation.textSelector).parent().next()
+					var search = $(this.textSelector).val();
+					$(this.textSelector).parent().next()
 							.text(ss.i18n._t('MovieInformationField.SEARCHING'));
-					$(movieinformation.chznSelector).hide();
-					movieinformation.getMovies(search, movieinformation.updateResults);
+					$(this.chznSelector).hide();
+					this.getMovies(search, movieinformation.updateResults);
 				},
 			getMovies : function(search, callback)
 				{
 					// Stop existing ones!
-					if (movieinformation.currentRequest) {
-						movieinformation.currentRequest.abort();
+					if (this.currentRequest) {
+						this.currentRequest.abort();
 					}
 					// Make it get more
 					search += '*';
-					movieinformation.currentSearch = search;
+					this.currentSearch = search;
 					// Get the URL of the controller
 					var base = $('div#URLSegment_RO span').text();
 					search = encodeURIComponent(search);
 					var api = base + 'getmovies/' + search + '?stage=Stage';
-					movieinformation.currentRequest = $.get(api, callback);
+					this.currentRequest = $.get(api, callback);
 				},
 			updateResults : function(json)
 				{
-					var $select = $(movieinformation.selectSelector);
+					var $select = $(this.selectSelector);
 					var $selectClone = $select.clone();
 					$selectClone.empty();
 					for(var i in json['results']) {
-						if (json['search'] != movieinformation.currentSearch) {
+						if (json['search'] != this.currentSearch) {
 							$selectClone.empty();
 							delete $selectClone;
 							return;
@@ -65,7 +65,7 @@
 					}
 					$select.replaceWith($selectClone);
 					console.log("Searched " + json['search']);
-					$(movieinformation.textSelector).parent().next()
+					$(this.textSelector).parent().next()
 							.text(ss.i18n._t('MovieInformationField.TEXT_DESCRIPTION'));
 				},
 		};
