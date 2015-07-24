@@ -1,0 +1,18 @@
+{
+	"name": "silverstripe/movieinformation",
+	"description": "A simple module that allows users to create pages for others to view information about a movie",
+	"keywords": [
+		"silverstripe",
+		"movies",
+	],
+	"type": "silverstripe-module",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Hugh Davenport",
+			"email": "hugh@davenport.net.nz"
+		}
+	],
+	"minimum-stability": "dev",
+	"prefer-stable": true
+}
