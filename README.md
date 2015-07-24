@@ -19,3 +19,7 @@ editing this page, you can search for a movie title, then select the one you
 want from the dropdown menu.
 
 You can only publish pages that have been set up with valid movies.
+
+# License
+
+Licensed under the MIT licence, see the LICENCE file for details.
