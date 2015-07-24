@@ -140,4 +140,61 @@ class MovieInformation_Controller extends Page_Controller {
 		return $this->response;
 	}
 
+	/**
+	 * Initialize the controller
+	 *
+	 */
+	public function init() {
+		parent::init();
+		$module_dir = basename(dirname(dirname(__DIR__)));
+		Requirements::css($module_dir . '/css/MovieInformation.css');
+	}
+
+	/**
+	 * Get information about the current movie to display.
+	 * Uses the OMDb API indirectly through the {@link MovieInformation->getInfo} function which
+	 * returns the XML body.
+	 *
+	 * Gets the rotten tomato information as well as the IMDb information. Also obtains both the
+	 * short and long version of the plot (at the expense of another query). In future this could
+	 * become configurable.
+	 *
+	 * @return ArrayData The information about the current pages movie
+	 */
+	public function getInfo() {
+		// This will get us XML body to play with as well as testing validity
+		$body = $this->isValid();
+		if($body === false) {
+			throw new SS_HTTPResponse_Exception(ErrorPage::response_for(404), 404);
+		}
+
+		$api = new RestfulService(
+			'http://www.omdbapi.com/'
+		);
+
+		$results = $api->getAttributes($body, 'movie');
+
+		$return = $results[0];
+
+		// Get short plot as well
+
+		$api->setQueryString(array(
+			'r'    => 'xml',        // RestfulService only supports XML
+			'type' => 'movie',      // Only grab movies
+			't'    => $this->Title, // User supplied search
+			'plot' => 'short',      // Get short in second query
+			'v'    => 1,            // Should put in for futureproof
+		));
+
+		$results = $api->request();
+		$results = $api->getAttributes($results->getBody(), 'movie');
+
+		if($results && !empty($results)) {
+			$results = $results[0];
+			$return->setField('shortPlot', $results->getField('plot'));
+		}
+
+		return $return;
+	}
+
 }

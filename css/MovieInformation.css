@@ -1,0 +1,25 @@
+.left {
+	float: left;
+	padding-right: 15px;
+}
+.top-info {
+	border-bottom: 1px solid #e5e5e5;
+	margin-top: -20px;
+	padding-bottom: 5px;
+	margin-bottom: 25px;
+}
+.plot {
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 25px;
+	margin-bottom: 25px;
+}
+.year {
+	font-size: 20px;
+}
+.rating {
+	font-size: 10px;
+}
+.inline {
+	display: inline;
+	padding-right: 10px;
+}
