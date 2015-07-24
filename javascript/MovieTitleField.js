@@ -12,9 +12,14 @@
 					// Detect changes
 					$(this.textSelector).on('input', this.input)
 					// Do initial search
-					this.input();
+					this.search();
 				},
 			input : function()
+				{
+					clearTimeout(movieinformation.timeout);
+					movieinformation.timeout = setTimeout(movieinformation.search, 500);
+				},
+			search : function()
 				{
 					var search = $(movieinformation.textSelector).val();
 					$(movieinformation.textSelector).parent().next()
