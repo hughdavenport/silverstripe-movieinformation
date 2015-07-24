@@ -1,3 +1,5 @@
 en:
   MovieInformationField:
     TEXT_DESCRIPTION: 'Type in this textbox to update the dropdown below.'
+  MovieInformation:
+    Title: 'Movie Title'
