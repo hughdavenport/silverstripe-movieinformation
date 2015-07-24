@@ -16,11 +16,11 @@
 				},
 			input : function()
 				{
-					var search = $(this.textSelector).val();
-					$(this.textSelector).parent().next()
-					                             .text(ss.i18n._t('MovieInformationField.SEARCHING'));
-					$(this.chznSelector).hide();
-					this.getMovies(search, movieinformation.updateResults);
+					var search = $(movieinformation.textSelector).val();
+					$(movieinformation.textSelector).parent().next()
+					                                         .text(ss.i18n._t('MovieInformationField.SEARCHING'));
+					$(movieinformation.chznSelector).hide();
+					movieinformation.getMovies(search, movieinformation.updateResults);
 				},
 			getMovies : function(search, callback)
 				{
@@ -39,11 +39,11 @@
 				},
 			updateResults : function(json)
 				{
-					var $select = $(this.selectSelector);
+					var $select = $(movieinformation.selectSelector);
 					var $selectClone = $select.clone();
 					$selectClone.empty();
 					for(var i in json['results']) {
-						if (json['search'] != this.currentSearch) {
+						if (json['search'] != movieinformation.currentSearch) {
 							$selectClone.empty();
 							delete $selectClone;
 							return;
@@ -65,8 +65,8 @@
 					}
 					$select.replaceWith($selectClone);
 					console.log("Searched " + json['search']);
-					$(this.textSelector).parent().next()
-					                             .text(ss.i18n._t('MovieInformationField.TEXT_DESCRIPTION'));
+					$(movieinformation.textSelector).parent().next()
+					                                         .text(ss.i18n._t('MovieInformationField.TEXT_DESCRIPTION'));
 				},
 		};
 		$(movieinformation.textSelector).entwine({
