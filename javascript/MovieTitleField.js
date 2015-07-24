@@ -20,9 +20,9 @@
 					$(movieinformation.textSelector).parent().next()
 					                                         .text(ss.i18n._t('MovieInformationField.SEARCHING'));
 					$(movieinformation.chznSelector).hide();
-					movieinformation.getMovies(search, movieinformation.updateResults);
+					movieinformation.getMovies(search);
 				},
-			getMovies : function(search, callback)
+			getMovies : function(search)
 				{
 					// Stop existing ones!
 					if (this.currentRequest) {
@@ -35,7 +35,7 @@
 					var base = $('div#URLSegment_RO span').text();
 					search = encodeURIComponent(search);
 					var api = base + 'getmovies/' + search + '?stage=Stage';
-					this.currentRequest = $.get(api, callback);
+					this.currentRequest = $.get(api, this.updateResults);
 				},
 			updateResults : function(json)
 				{
