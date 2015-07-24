@@ -18,7 +18,7 @@
 				{
 					var search = $(this.textSelector).val();
 					$(this.textSelector).parent().next()
-							.text(ss.i18n._t('MovieInformationField.SEARCHING'));
+					                             .text(ss.i18n._t('MovieInformationField.SEARCHING'));
 					$(this.chznSelector).hide();
 					this.getMovies(search, movieinformation.updateResults);
 				},
@@ -51,7 +51,7 @@
 						var title = json['results'][i];
 						title = title.replace('&#039;', "'");
 						var $option = $('<option>').val(title)
-												   .text(title);
+						                           .text(title);
 						if (i == 0) {
 							$option.attr('selected', 'selected');
 						}
@@ -66,7 +66,7 @@
 					$select.replaceWith($selectClone);
 					console.log("Searched " + json['search']);
 					$(this.textSelector).parent().next()
-							.text(ss.i18n._t('MovieInformationField.TEXT_DESCRIPTION'));
+					                             .text(ss.i18n._t('MovieInformationField.TEXT_DESCRIPTION'));
 				},
 		};
 		$(movieinformation.textSelector).entwine({
