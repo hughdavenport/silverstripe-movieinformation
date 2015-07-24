@@ -10,7 +10,7 @@
 				{
 					this.currentSearch = '';
 					// Detect changes
-					$(this.textSelector).on('input', movieinformation.input)
+					$(this.textSelector).on('input', this.input)
 					// Do initial search
 					this.input();
 				},
