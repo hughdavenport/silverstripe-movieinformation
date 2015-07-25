@@ -30,7 +30,7 @@
 			getMovies : function(search)
 				{
 					// Stop existing ones!
-					if (this.currentRequest) {
+					if(this.currentRequest) {
 						this.currentRequest.abort();
 					}
 					// Make it get more
@@ -53,7 +53,7 @@
 					var $selectClone = $select.clone();
 					$selectClone.empty();
 					for(var i in json['results']) {
-						if (json['search'] != movieinformation.currentSearch) {
+						if(json['search'] != movieinformation.currentSearch) {
 							$selectClone.empty();
 							delete $selectClone;
 							return;
@@ -62,12 +62,12 @@
 						title = title.replace('&#039;', "'");
 						var $option = $('<option>').val(title)
 						                           .text(title);
-						if (i == 0) {
+						if(i == 0) {
 							$option.attr('selected', 'selected');
 						}
 						$selectClone.append($option);
 					}
-					if (json['results'].length == 0) {
+					if(json['results'].length == 0) {
 						$selectClone.attr('data-placeholder', 'No results');
 						$selectClone.append($('<option>'));
 					} else {
