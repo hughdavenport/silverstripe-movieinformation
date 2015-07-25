@@ -38,6 +38,11 @@
 					this.currentSearch = search;
 					// Get the URL of the controller
 					var base = $('div#URLSegment_RO span').text();
+					if(base == '') {
+						base = $('div#URLSegment a').attr('href');
+						base = base.replace(/\?stage=Stage$/, '');
+						base += '/';
+					}
 					search = encodeURIComponent(search);
 					var api = base + 'getmovies/' + search + '?stage=Stage';
 					this.currentRequest = $.get(api, this.updateResults);
